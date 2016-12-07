@@ -59,4 +59,6 @@ void insert()
     cout<<"Enter the element to be inserted! ";
     cin>>curr->data;
     if (root->next==null)
+        cout<<"Empty list ";
+
 }
