@@ -7,19 +7,22 @@ using namespace std;
 
 class list
 {
+public:
     int data;
     list *next;
     list()
     {
-        list->next = null;
+
     }
+public:
     void create();
     void insert();
     void print();
-    void delete();
+    void del();
 };
-
-void main()
+list *head = NULL;
+list *tail = NULL;
+int main()
 {
     int choice;
     list l1;
@@ -34,9 +37,12 @@ void main()
                 l1.insert();
                 break;
             case 2:
-                l1.delete();
+                l1.del();
+                cout<<"List after deletion is :";
+                l1.print();
                 break;
             case 3:
+                cout<<"The list is: ";
                 l1.print();
                 break;
             default:
@@ -45,20 +51,69 @@ void main()
     }
 }
 
-void create()
+void list::create()
 {
-    list *root;
-    list *temp = new list();
+    list *temp = new list;
     cout<<"Enter the first element of the linked list! ";
     cin>>temp->data;
-    root->next=temp;
+    head=tail=temp;
 }
 
-void insert()
+void list::insert()
 {
+    list *temp = new list;
     cout<<"Enter the element to be inserted! ";
-    cin>>curr->data;
-    if (root->next==null)
-        cout<<"Empty list ";
-
+    cin>>temp->data;
+    if (head!=NULL && tail!=NULL)
+    {
+        tail->next = temp;
+        tail = temp;
+    }
+    else
+    {
+        cout<<"List was empty and is now created! ";
+        tail=head=temp;
+    }
 }
+
+void list::del()
+{
+    if (head==NULL)
+    {
+        cout<<"List is empty and cannot be deleted! ";
+    }
+    else
+    {
+        int key;
+        list *temp = new list;
+        cout<<"Enter the element to be deleted! ";
+        cin>>key;
+        int i=1;
+        for (temp=head;temp->next!=NULL;temp=temp->next)
+        {
+            if (temp->data==key)
+            {
+                cout<<"Element found at "<<i<<" position, and is deleted! ";
+                temp->data=temp->next->data;
+                temp->next=temp->next->next;
+
+            }
+            else
+            {
+                cout<<"Element not found in list! ";
+            }
+        i++;
+        }
+
+    }
+}
+
+void list::print()
+{
+    list temp = new list;
+    for (temp = head; temp->next!=NULL; temp=temp->next)
+    {
+        cout<<temp->data<<" ";
+    }
+}
+
