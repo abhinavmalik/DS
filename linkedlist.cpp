@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class list
+class Node
 {
 public:
     int data;
-    list *next;
-    list()
+    Node *next;
+    Node()
     {
 
     }
@@ -20,12 +20,12 @@ public:
     void print();
     void del();
 };
-list *head = NULL;
-list *tail = NULL;
+Node *head = NULL;
+Node *tail = NULL;
 int main()
 {
     int choice;
-    list l1;
+    Node l1;
     l1.create();
     while (1)
     {
@@ -38,11 +38,11 @@ int main()
                 break;
             case 2:
                 l1.del();
-                cout<<"List after deletion is :";
+                cout<<"Node after deletion is :";
                 l1.print();
                 break;
             case 3:
-                cout<<"The list is: ";
+                cout<<"The Node is: ";
                 l1.print();
                 break;
             default:
@@ -51,17 +51,17 @@ int main()
     }
 }
 
-void list::create()
+void Node::create()
 {
-    list *temp = new list;
-    cout<<"Enter the first element of the linked list! ";
+    Node *temp = new Node;
+    cout<<"Enter the first element of the linked Node! ";
     cin>>temp->data;
     head=tail=temp;
 }
 
-void list::insert()
+void Node::insert()
 {
-    list *temp = new list;
+    Node *temp = new Node;
     cout<<"Enter the element to be inserted! ";
     cin>>temp->data;
     if (head!=NULL && tail!=NULL)
@@ -71,21 +71,21 @@ void list::insert()
     }
     else
     {
-        cout<<"List was empty and is now created! ";
+        cout<<"Node was empty and is now created! ";
         tail=head=temp;
     }
 }
 
-void list::del()
+void Node::del()
 {
     if (head==NULL)
     {
-        cout<<"List is empty and cannot be deleted! ";
+        cout<<"Node is empty and cannot be deleted! ";
     }
     else
     {
         int key;
-        list *temp = new list;
+        Node *temp = new Node;
         cout<<"Enter the element to be deleted! ";
         cin>>key;
         int i=1;
@@ -100,7 +100,7 @@ void list::del()
             }
             else
             {
-                cout<<"Element not found in list! ";
+                cout<<"Element not found in Node! ";
             }
         i++;
         }
@@ -108,9 +108,9 @@ void list::del()
     }
 }
 
-void list::print()
+void Node::print()
 {
-    list temp = new list;
+    Node temp = new Node;
     for (temp = head; temp->next!=NULL; temp=temp->next)
     {
         cout<<temp->data<<" ";
